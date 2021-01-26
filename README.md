@@ -3,7 +3,7 @@
 
 소켓프로그래밍으로 패키지이름, 앱이름을 JSON으로 담아 보냅니다.
 
-<img src="https://i.imgur.com/0VlvNrI.png" width="450px" height="300px" alt="Screenshot"></img>
+<img src="https://i.imgur.com/0VlvNrI.png"  height="300px" alt="Screenshot"></img>
 
 ## ⌨️사용법
 1. 안드로이드폰과 케이블을 준비합니다.
