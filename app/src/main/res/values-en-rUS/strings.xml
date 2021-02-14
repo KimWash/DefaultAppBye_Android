@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">DefaultAppBye</string>
     <string name="connect">Connect</string>
@@ -20,6 +21,4 @@
     <string name="manual">How to use?</string>
     <string name="title">DefaultAppBye 👋</string>
     <string name="preparing">Not developed yet :(</string>
-    <!-- Strings used for fragments for navigation -->
-
 </resources>

@@ -20,7 +20,7 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="설정"
+            android:text="@string/setting"
             android:textStyle="bold"
             android:textSize="30sp"
             android:textColor="?attr/titleColor"
@@ -39,7 +39,7 @@
                 android:id="@+id/preText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="준비중입니다!"
+                android:text="@string/preparing"
                 android:textSize="20sp"
                 android:textColor="?attr/textColor"/>
         </LinearLayout>

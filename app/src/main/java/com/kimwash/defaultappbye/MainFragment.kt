@@ -31,6 +31,7 @@ import java.math.BigInteger
 import java.net.InetAddress
 import java.net.UnknownHostException
 import java.nio.ByteOrder
+import java.util.ArrayList
 
 
 class MainFragment(): Fragment() {
@@ -42,9 +43,16 @@ class MainFragment(): Fragment() {
         override fun handleMessage(msg: Message) {
             val bundle = msg.data
             val connected = bundle.getBoolean("connected")
-            val ipAddress = bundle.getString("ipAddress")
-            val ipLabel = view!!.findViewById<TextView>(R.id.clientIpAddress)
-            ipLabel.setText("PC IP: ${ipAddress}")
+            if (connected){
+                val ipAddress = bundle.getString("ipAddress")
+                val ipLabel = view!!.findViewById<TextView>(R.id.clientIpAddress)
+                ipLabel.setText("${getString(R.string.pIP)}: ${ipAddress}")
+            }
+            else if(!connected){
+                view!!.findViewById<TextView>(R.id.connText).text = getString(R.string.connect)
+                Toast.makeText(context!!, getString(R.string.disconnected), Toast.LENGTH_SHORT).show()
+            }
+
         }
     }
 
@@ -53,15 +61,15 @@ class MainFragment(): Fragment() {
         var ipAddress = wifiManager.connectionInfo.ipAddress
 
         // Convert little-endian to big-endianif needed
-        if (ByteOrder.nativeOrder().equals(ByteOrder.LITTLE_ENDIAN)) {
+        if (ByteOrder.nativeOrder() == ByteOrder.LITTLE_ENDIAN) {
             ipAddress = Integer.reverseBytes(ipAddress)
         }
         val ipByteArray: ByteArray = BigInteger.valueOf(ipAddress.toLong()).toByteArray()
         val ipAddressString: String?
         ipAddressString = try {
-            InetAddress.getByAddress(ipByteArray).getHostAddress()
+            InetAddress.getByAddress(ipByteArray).hostAddress
         } catch (ex: UnknownHostException) {
-            Toast.makeText(context!!, "와이파이에 연결되어 있지 않은 것 같습니다. 연결을 확인해주세요.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context!!, getString(R.string.noWIfi), Toast.LENGTH_SHORT).show()
             null
         }
         return ipAddressString
@@ -72,10 +80,10 @@ class MainFragment(): Fragment() {
         super.onResume()
         if(Settings.Secure.getInt(context!!.getContentResolver(), Settings.Global.ADB_ENABLED, 0) != 1) {
             //;debugging does not enabled
-            Util.dispDialog(context!!, "USB 디버깅을 활성화해야 정상적으로 이용하실 수 있습니다.", {
+            Util.dispDialog(context!!, getString(R.string.tOnDebugging), {
                 val intent = Intent(ACTION_APPLICATION_DEVELOPMENT_SETTINGS)
                 startActivity(intent)
-            }, "안내", null)
+            }, getString(R.string.info), null)
         }
     }
 
@@ -88,16 +96,14 @@ class MainFragment(): Fragment() {
 
         val pager = view.findViewById<ViewPager>(R.id.viewPager)
         pager.setPageTransformer(true, ZoomOutPageTransformer())
-        val data = JSONArray()
-        val data1 = JSONObject()
-        val data2 = JSONObject()
-        data1.put("url", "https://yoon-lab.xyz/computer.png")
-        data1.put("explain", "1. 스마트폰을 PC에 연결합니다.")
-        data2.put("url", "https://yoon-lab.xyz/exe-file.png")
-        data2.put("explain", "2. PC 프로그램을 실행합니다.")
-        data.put(data1)
-        data.put(data2)
-        val adapter: PagerAdapter = ViewPagerAdapter(context!!, data)
+
+        var guide: ArrayList<Guide> = arrayListOf<Guide>()
+        guide.add(Guide("https://yoon-lab.xyz/connect.png", getString(R.string.guide_1)))
+        guide.add(Guide("https://yoon-lab.xyz/program.png", getString(R.string.guide_2)))
+        guide.add(Guide("https://yoon-lab.xyz/click.png", getString(R.string.guide_3)))
+        guide.add(Guide("https://yoon-lab.xyz/delete.png", getString(R.string.guide_4)))
+        guide.add(Guide("https://yoon-lab.xyz/check.png", getString(R.string.guide_5)))
+        val adapter: PagerAdapter = ViewPagerAdapter(context!!, guide)
 
         pager.adapter = adapter
 
@@ -112,20 +118,20 @@ class MainFragment(): Fragment() {
             if (connected){
                 connected = false
                 ServerThread(context!!, handler).closeConnect()
-                view.findViewById<TextView>(R.id.connText).text = "연결"
-                Toast.makeText(context!!, "연결이 해제되었습니다.", Toast.LENGTH_SHORT).show()
+                view.findViewById<TextView>(R.id.connText).text = getString(R.string.connect)
+                Toast.makeText(context!!, getString(R.string.disconnected), Toast.LENGTH_SHORT).show()
             }
             else{
                 connected = true
                 ServerThread(context!!, handler).start()
-                view.findViewById<TextView>(R.id.connText).text = "연결 해제"
-                Toast.makeText(context!!, "이제 PC에서 앱 삭제 버튼을 눌러주세요.", Toast.LENGTH_SHORT).show()
+                view.findViewById<TextView>(R.id.connText).text = getString(R.string.disConnect)
+                Toast.makeText(context!!, getString(R.string.goodToGo), Toast.LENGTH_SHORT).show()
             }
 
         }
         val ip = wifiIpAddress()
 
-        ipLabel.text = "Your IP : $ip"
+        ipLabel.text = "${getString(R.string.aIP)} $ip"
 
         Log.e(TAG, "Launched")
     }

@@ -10,28 +10,30 @@ import androidx.viewpager.widget.PagerAdapter
 import com.bumptech.glide.Glide
 import org.json.JSONArray
 import org.json.JSONObject
+import java.util.ArrayList
 
 
-class ViewPagerAdapter(context: Context, data:JSONArray) :
+class ViewPagerAdapter(context: Context, data: ArrayList<Guide>) :
     PagerAdapter() {
     private val mContext: Context
-    private val mData: JSONArray
+    private val mData: ArrayList<Guide>
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val inflater = mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view: View = inflater.inflate(R.layout.adapterpage, container, false)
         val imageView: ImageView = view.findViewById(R.id.imageView)
         val explainText = view.findViewById<TextView>(R.id.explain)
+        val guide = mData[position]
         Glide.with(mContext)
-            .load(mData.getJSONObject(position).getString("url"))
+            .load(guide.url)
             .into(imageView)
-        explainText.text = mData.getJSONObject(position).getString("explain")
+        explainText.text = guide.explain
 
         container.addView(view)
         return view
     }
 
     override fun getCount(): Int {
-        return mData.length()
+        return mData.size
     }
 
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {

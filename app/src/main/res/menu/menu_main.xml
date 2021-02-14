@@ -4,13 +4,13 @@
     tools:context="com.kimwash.defaultappbye.MainActivity">
     <item
         android:id="@+id/action_connect"
-        android:title="Connect"
+        android:title="@string/connect"
         android:icon="@drawable/ic_connect"
         style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_settings"
-        android:title="@string/action_settings"
+        android:title="@string/setting"
         android:icon="@drawable/ic_baseline_settings_24"
         style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
         app:showAsAction="never" />

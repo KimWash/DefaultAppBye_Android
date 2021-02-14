@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">기본앱 안녕!</string>
+    <string name="connect">연결</string>
+    <string name="pIP">컴퓨터 IP:</string>
+    <string name="aIP">스마트폰 IP:</string>
+    <string name="waitforconn">연결을 기다리는 중...</string>
+    <string name="guide_1">1. 스마트폰을 PC에 연결합니다.</string>
+    <string name="guide_2">2. PC 프로그램을 실행합니다.</string>
+    <string name="guide_3">3. 앱 상단의 \'연결\' 버튼을 클릭합니다.</string>
+    <string name="guide_4">4. PC 프로그램에서 \'앱 삭제\' 버튼을 클릭합니다.</string>
+    <string name="guide_5">5. 삭제하려는 앱을 체크하고 삭제하세요! :)</string>
+    <string name="info">안내</string>
+    <string name="tOnDebugging">\"USB 디버깅을 활성화해야 정상적으로 이용하실 수 있습니다.\"</string>
+    <string name="disConnect">연결 해제</string>
+    <string name="disconnected">연결이 해제되었습니다.</string>
+    <string name="connected">PC와 정상적으로 연결되었습니다.</string>
+    <string name="noWIfi">와이파이에 연결되어 있지 않은 것 같습니다. 연결을 확인해주세요.</string>
+    <string name="setting">설정</string>
+    <string name="goodToGo">이제 PC에서 앱 삭제 버튼을 눌러주세요.</string>
+    <string name="manual">사용법</string>
+    <string name="title">기본앱 안녕 👋</string>
+    <string name="preparing">준비중입니다!</string>
+</resources>

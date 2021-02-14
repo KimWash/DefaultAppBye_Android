@@ -96,6 +96,12 @@ internal class ServerThread(val context: Context, val handler: Handler) : Thread
 
             if (serverSocket != null) {
                 try {
+                    val message = Message.obtain()
+                    val bundle = Bundle()
+                    bundle.putBoolean("connected", false)
+                    message.data = bundle
+                    handler.sendMessage(message)
+
                     serverSocket.close()
                 } catch (e: Exception) {
                     e.printStackTrace()
