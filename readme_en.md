@@ -19,9 +19,10 @@ Send PackageName with AppName via SocketProgramming with JSON.
 - Very tricky App!
 
 
-## 버그 및 문제점
+## Bug & Problems
 - Device image load functions on few devices.
 
-## 변경사항
+## Changelogs
 2021.01.27 Using SocketProgramming to get PackageName and AppName from Phone.
+
 2021.02.15 Localized and few bugs are fixed.
